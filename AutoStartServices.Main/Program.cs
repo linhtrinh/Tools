@@ -10,19 +10,10 @@ namespace AutoStartServices.Main
         static void Main(string[] args)
         {
             var app = new Program();
-            var timer = new Timer(app.StartDevServices, null, 0, 5 * 60 * 1000);
-            for(; ; )
-            {
-                Thread.Sleep(5 * 60 * 1000 - 500);
-            }
-        }
-
-        private void StartDevServices(Object stateInfo)
-        {
             Console.WriteLine("Auto start dev services");
-            StartService(Consts.SQLSERVICE);
-            StartService(Consts.SQLAGENTSERVICE);
-            StartService(Consts.WEBSERVICE);
+            app.StartService(Consts.SQLSERVICE);
+            app.StartService(Consts.SQLAGENTSERVICE);
+            app.StartService(Consts.WEBSERVICE);
             Console.WriteLine("started dev services");
         }
         private void StartService(string serviceName)
